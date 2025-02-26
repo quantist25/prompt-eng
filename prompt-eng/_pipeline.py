@@ -1,29 +1,3 @@
-##
-## Prompt Engineering Lab
-## Platform for Education and Experimentation with Prompt NEngineering in Generative Intelligent Systems
-## _pipeline.py :: Simulated GenAI Pipeline 
-## 
-#  
-# Copyright (c) 2025 Dr. Fernando Koch, The Generative Intelligence Lab @ FAU
-# 
-# Permission is hereby granted, free of charge, to any person obtaining a copy
-# of this software and associated documentation files (the "Software"), to deal
-# in the Software without restriction, including without limitation the rights 
-# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-# copies of the Software, and to permit persons to whom the Software is
-# furnished to do so, subject to the following conditions:
-#
-# The above copyright notice and this permission notice shall be included in all
-# copies or substantial portions of the Software.
-# 
-# Documentation and Getting Started:
-#    https://github.com/GenILab-FAU/prompt-eng
-#
-# Disclaimer: 
-# Generative AI has been used extensively while developing this package.
-# 
-
-
 import requests
 import json
 import os
@@ -154,22 +128,20 @@ def model_req(payload=None):
     return
 
 
-###
-### DEBUG
-###
-
+### ### DEBUG ###
 if __name__ == "__main__":
     from _pipeline import create_payload, model_req
     MESSAGE = "1 + 1"
-    PROMPT = MESSAGE 
+    PROMPT = MESSAGE
+    
     payload = create_payload(
-                         target="open-webui",   
-                         model="llama3.2:latest", 
-                         prompt=PROMPT, 
-                         temperature=1.0, 
-                         num_ctx=5555555, 
-                         num_predict=1)
-
+                        target="ollama",
+                        model="llama3.2:latest",  # Using the exact model name from your list
+                        prompt=PROMPT, 
+                        temperature=0.7,
+                        num_ctx=100, 
+                        num_predict=100)
+    
     time, response = model_req(payload=payload)
     print(response)
     if time: print(f'Time taken: {time}s')
